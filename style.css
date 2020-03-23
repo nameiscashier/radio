@@ -16,7 +16,7 @@ body
     top: 50%;
     right: 0;
     left: 0;
-    width: 430px;
+    width: 503px;
     height: 100px;
     margin: -4px auto;
 }
@@ -62,7 +62,7 @@ body
     top: 0;
     right: 15px;
     left: 15px;
-    padding: 13px 22px 10px 184px;
+    padding: 14px 36px 17px 192px;
     background-color: #fff7f7;
     border-radius: 15px 15px 0 0;
     -webkit-transition: 0.3s ease top;
@@ -309,27 +309,27 @@ body
 
 #player-controls
 {
-    width: 250px;
+    width: 323px;
     height: 100%;
-    margin: 0 5px 0 141px;
+    margin: -5px 8px 0 86px;
     float: right;
     overflow: hidden;
 }
 
 .control
 {
-    width: 33.333%;
+    width: 20%;
     float: left;
-    padding: 12px 0;
+    padding: 14px 0px;
 }
 
 .button
 {
-    width: 26px;
+    width: 41% !important;
     height: 26px;
-    padding: 25px;
+    padding: 20px;
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 0px;
     cursor: pointer;
 }
 
@@ -346,6 +346,7 @@ body
 {
     -webkit-transition: 0.2s ease all;
     transition: 0.2s ease all;
+    width: 26px;
 }
 
 .button:hover
@@ -356,4 +357,16 @@ body
 .button:hover i
 {
     color: #fff;
+}
+
+.chosenButtonBackground {
+    background-color: #d6dee7; 
+}
+
+.chosenButtonIcon {
+    color: #fff !important;
+}
+
+#input {
+    opacity: 0;
 }

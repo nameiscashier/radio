@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <title>radio - nameiscashier</title>
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=0.5, minimum-scale=0.5, width=device-width" />
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <!-- Tracks used in this music/audio player application are free to use. I downloaded them from Soundcloud and NCS websites. I am not the owner of these tracks. -->
-
     <div id="app-cover">
         <div id="bg-artwork"></div>
         <div id="bg-layer"></div>
@@ -30,10 +30,15 @@
             </div>
             <div id="player-content">
                 <div id="album-art">
-                    <img src="https://avatar-nct.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453716209149.jpg" class="active" id="_1">
+                    <img src="https://nameiscashier.github.io/img/avatar-icon.jpg" class="active" id="_1">
                     <div id="buffer-box">Buffering ...</div>
                 </div>
                 <div id="player-controls">
+                    <div class="control">
+                        <div class="button chosenButtonBackground">
+                            <i class="fas fa-random chosenButtonIcon"></i>
+                        </div>
+                    </div>
                     <div class="control">
                         <div class="button" id="play-previous">
                             <i class="fas fa-backward"></i>
@@ -49,12 +54,24 @@
                             <i class="fas fa-forward"></i>
                         </div>
                     </div>
+                    <div class="control">
+                        <div class="button" id="play-loop-button">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="add-playlist-button">
+                            <i class="fas fa-upload">
+                                <input type="file" id="input" webkitdirectory directory multiple>
+                            </i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="./script.js"></script>
-
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src="./script.js"></script>
 </body>
 </html>
