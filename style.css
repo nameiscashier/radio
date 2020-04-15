@@ -13,10 +13,10 @@ body
 #app-cover
 {
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0;
     left: 0;
-    width: 503px;
+    width: 570px;
     height: 100px;
     margin: -4px auto;
 }
@@ -28,10 +28,10 @@ body
     right: -30px;
     bottom: -30px;
     left: -30px;
-    background-image: url("./Background/bg1.jpg");
+    background-image: url("./Background/tumblr_05fe1ea2a6030044e06afd9e6d896cdf_17cc4ca5_1280.gif");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 50%;
+    background-position: 10%;
     filter: blur(4px);
     -webkit-filter: blur(4px);
     z-index: 1;
@@ -62,7 +62,7 @@ body
     top: 0;
     right: 15px;
     left: 15px;
-    padding: 14px 36px 17px 192px;
+    padding: 13px 22px 10px 184px;
     background-color: #fff7f7;
     border-radius: 15px 15px 0 0;
     -webkit-transition: 0.3s ease top;
@@ -309,9 +309,9 @@ body
 
 #player-controls
 {
-    width: 323px;
+    width: 400px;
     height: 100%;
-    margin: -5px 8px 0 86px;
+    margin: 0 5px 0 141px;
     float: right;
     overflow: hidden;
 }
@@ -320,16 +320,16 @@ body
 {
     width: 20%;
     float: left;
-    padding: 14px 0px;
+    padding: 12px 0;
 }
 
 .button
 {
-    width: 41% !important;
+    width: 26px;
     height: 26px;
-    padding: 20px;
+    padding: 25px;
     background-color: #fff;
-    border-radius: 0px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -346,7 +346,6 @@ body
 {
     -webkit-transition: 0.2s ease all;
     transition: 0.2s ease all;
-    width: 26px;
 }
 
 .button:hover
@@ -359,14 +358,107 @@ body
     color: #fff;
 }
 
-.chosenButtonBackground {
-    background-color: #d6dee7; 
+.isEnabled
+{
+    background-color: #d6d6de;
+    animation: toggle 0.8s linear;
+    transition: 0.2s ease-out;
 }
 
-.chosenButtonIcon {
-    color: #fff !important;
+@keyframes toggle {
+    from {
+        opacity: 0.6;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-#input {
-    opacity: 0;
+.isEnabled i
+{
+    color: #fff;
+    transform: scale(1.2);
+}
+
+#message {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3.8rem;
+    color: #f86d92;
+    font-style: italic;
+    font-weight: 700;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 9rem;
+    z-index: 10;
+    position: relative;
+}
+
+#list-song {
+    position: absolute;
+    top: 110px;
+    border-radius: 10px;
+    background-color: #fff7f769;
+    right: 15px;
+    left: 15px;
+    z-index: 1;
+    padding: 10px 20px;
+    height: 120px;
+    overflow-y: scroll;
+    font-family: Helvetica, Arial;
+    color: #000000d6 !important;
+}
+
+.song {
+    width: calc(100% - 32px);
+    display: flex;
+    height: 25px;
+    font-size: 18px;
+    border-radius: 10px;
+    align-items: center;
+    padding: 5px 16px;
+    cursor: pointer;
+    transition: 0.1s linear;
+    margin-bottom: 5px;
+}
+
+
+.song:hover {
+    background-color: #fdf5f5bd;
+    opacity: 0.8;
+    transform: scale(0.99);
+}
+
+.playingSong {
+    background-color: #fdf5f5bd;
+    opacity: 0.8;
+    transform: scale(0.99);
+}
+
+.song .info {
+    padding-top: 2px;
+    padding-left: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.song i {
+    font-size: 14px;
+}
+
+#list-song::-webkit-scrollbar-track
+{
+    border-radius: 15px;
+}
+
+#list-song::-webkit-scrollbar
+{
+    width: 7px;
+}
+
+#list-song::-webkit-scrollbar-thumb
+{
+    border-radius: 15px;
+    background-color: #6a6d70;
 }

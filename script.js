@@ -12,35 +12,33 @@ $(function()
 		insTime = $('#ins-time'),
 		sHover = $('#s-hover'),
         playPauseButton = $("#play-pause-button"),
-        i = playPauseButton.find('i'),
-        playLoopButton = $("#play-loop-button"),
-        iLoop = playLoopButton.find('i'),
-        addPlayListButton = $("#add-playlist-button"),
-        inputFile = $("#input"),
+        playRepeatButton = $("#play-repeat"),
+        openMenu = $('#play-menu'),
+		i = playPauseButton.find('i'),
 		tProgress = $('#current-time'),
 		tTime = $('#track-length'),
 		seekT, seekLoc, seekBarPos, cM, ctMinutes, ctSeconds, curMinutes, curSeconds, durMinutes, durSeconds, playProgress, bTime, nTime = 0,
-		buffInterval = null, tFlag = false, repeatAll = false;
+		buffInterval = null, tFlag = false;
 	
 	var playPreviousTrackButton = $('#play-previous'), playNextTrackButton = $('#play-next'), currIndex = -1;
 	
 	var songs = [{
-		artist: "Hozie",
-		name: "Take me to church",
-		url: "Musics/TakeMeToChurch-Hozier-3557485.mp3",
-		picture: "https://avatar-nct.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453716209149.jpg"
-	},{
-		artist: "Orange - Khoi",
-		name: "Chân ái",
-		url: "Musics/Chan Ai - Orange_ Khoi.mp3",
-		picture: "https://nameiscashier.github.io/img/avatar-icon.jpg"
-	},{
-		artist: "Lyly ft Magazine",
+		artist: "lyly",
 		name: "24h",
 		url: "Musics/24h - LYLY ft MAGAZINE.mp3",
-		picture: "https://nameiscashier.github.io/img/avatar-icon.jpg"
-	}];
-	
+		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000234256890-edhgn3-original.jpg"
+},{
+		artist: "hozier",
+		name: "take me to church",
+		url: "Musics/TakeMeToChurch-Hozier-3557485.mp3",
+		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000413713464-l67iaw-original.jpg"
+},{
+		artist: "lemon fight",
+		name: "stroger",
+		url: "Musics/Lemon Fight - Stronger (Ft. Jessica Reynoso).mp3",
+		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000413713464-l67iaw-original.jpg"
+},
+   ];
 	function shuffle(a) {
 		var j, x, i;
 		for (i = a.length - 1; i > 0; i--) {
@@ -51,7 +49,7 @@ $(function()
 		}
 		return a;
 	}
-	songs = shuffle(songs);
+	// songs = shuffle(songs);
 
     function playPause()
     {
@@ -77,20 +75,26 @@ $(function()
         },300);
     }
 
-    function playLoop(){
-        setTimeout(function()
-        {
-            if (playLoopButton.hasClass('chosenButtonBackground')){
-                playLoopButton.removeClass('chosenButtonBackground');
-                iLoop.removeClass('chosenButtonIcon');
-            }
-            else{
-                playLoopButton.addClass('chosenButtonBackground');
-                iLoop.addClass('chosenButtonIcon');
-            }
-            //audio.loop = !audio.loop;
-            repeatAll = !repeatAll;
-        },100);
+    // toggle repeat
+    function playRepeat()
+    {
+        isRepeat = !isRepeat;
+        audio.loop = isRepeat;
+        toggleEnable(isRepeat, playRepeatButton);
+    }
+
+    function toggleEnable(condition, element)
+    {
+        if (condition)
+            element.addClass('isEnabled');
+        else
+            element.removeClass('isEnabled');
+    }
+    
+    function toggleMenu()
+    {
+        isOpen = !isOpen;
+        toggleEnable(isOpen, openMenu);
     }
 
 	function showHover(event)
@@ -186,22 +190,14 @@ $(function()
         
 		seekBar.width(playProgress+'%');
 		
-		if( playProgress == 100)
+		if( playProgress == 100 )
 		{
 			i.attr('class','fa fa-play');
 			seekBar.width(0);
             tProgress.text('00:00');
             albumArt.removeClass('buffering').removeClass('active');
             clearInterval(buffInterval);
-            if (repeatAll === true && currIndex == songs.length - 1){
-                currIndex = -1;
-                selectTrack(0);
-                playPauseButton.click();
-            }
-            else
-            {
-                selectTrack(1);
-            }
+			selectTrack(1);
 		}
     }
     
@@ -221,12 +217,17 @@ $(function()
         },100);
     }
 
-    function selectTrack(flag)
+    function selectTrack(flag, index = null)
     {
-        if( flag == 0 || flag == 1 )
-            ++currIndex;
-        else
-            --currIndex;
+        if (index === null) {
+            if( flag == 0 || flag == 1 ) {
+                ++currIndex;
+            } else if (flag === -1) {
+                --currIndex;
+            }
+        } else {
+            currIndex = index;
+        }
 
         if( (currIndex > -1) && (currIndex < songs.length) )
         {
@@ -265,45 +266,33 @@ $(function()
 
             albumName.text(currAlbum);
             trackName.text(currTrackName);
+			albumArt.find('img').attr('src', currArtwork);
             $('#album-art img').prop('src', bgArtworkUrl);
+            $('.song').removeClass('playingSong');
+            $('#song' + currIndex).addClass('playingSong');
         }
         else
         {
-            if( flag == 0 || flag == 1 )
-                --currIndex;
-            else
-                ++currIndex;
+            if (currIndex < 0) {
+                currIndex = songs.length - 1;
+            } else if (currIndex > songs.length - 1) {
+                currIndex = 0;
+            }
+            selectTrack(2);
         }
     }
-
-    //function chooseFile(event) {
-    //    event.stopPropagation();
-    //
-    //}
 
     function initPlayer()
 	{	
         audio = new Audio();
-
+        addSongList();
 		selectTrack(0);
 		
 		audio.loop = false;
-		
-        playPauseButton.on('click',playPause);
-        
-        playLoopButton.on('click',playLoop);
+        isRepeat = false;
+        isOpen = false;
 
-        // addPlayListButton.on('click', function(e){
-        //     inputFile.get(0).click();
-        // });
-
-        // inputFile.change(function(){
-        //     var uploadFiles = inputFile.prop('files');
-        //     var directory = uploadFiles[0].webkitRelativePath;
-        //     alert("Playlist is uploaded successfully");
-            
-        // })
-
+		playPauseButton.on('click',playPause);
 		
 		sArea.mousemove(function(event){ showHover(event); });
 		
@@ -313,9 +302,39 @@ $(function()
 		
         $(audio).on('timeupdate',updateCurrTime);
 
-        playPreviousTrackButton.on('click',function(){ selectTrack(-1);} );
-        playNextTrackButton.on('click',function(){ selectTrack(1);});
-	}
+        playPreviousTrackButton.on('click',function(){
+            selectTrack(-1);
+        });
+        playNextTrackButton.on('click',function(){
+            selectTrack(1);
+        });
+        playRepeatButton.on('click', function(){
+            playRepeat();
+        });
+        openMenu.on('click', function(){
+            $("#list-song").fadeToggle(300);
+            toggleMenu();
+        });
+    }
+    
+    function addSongList() {
+        songs.forEach((song, index) => {
+            const songTemplate = 
+            `<div class="song" id="song${index}">
+                <i class="fas fa-play"></i>
+                <div class="info">
+                    ${song.name} - ${song.artist}
+                </div>
+            </div>`
+
+            $("#list-song").append(songTemplate);
+            $('#song' + index).on('click', () => {
+                selectTrack(0, index);
+                playPause();
+            });
+        })
+        
+    }
     
 	initPlayer();
 });
