@@ -26,17 +26,17 @@ $(function()
 		artist: "lyly",
 		name: "24h",
 		url: "Musics/24h - LYLY ft MAGAZINE.mp3",
-		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000234256890-edhgn3-original.jpg"
+		picture: "https://raw.githubusercontent.com/nameiscashier/radio/master/cover/artworks-000413713464-l67iaw-original.jpg"
 },{
 		artist: "hozier",
 		name: "take me to church",
 		url: "Musics/TakeMeToChurch-Hozier-3557485.mp3",
-		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000413713464-l67iaw-original.jpg"
+		picture: "https://raw.githubusercontent.com/nameiscashier/radio/master/cover/artworks-000234256890-edhgn3-original.jpg"
 },{
 		artist: "lemon fight",
 		name: "stroger",
 		url: "Musics/Lemon Fight - Stronger (Ft. Jessica Reynoso).mp3",
-		picture: "https://raw.githubusercontent.com/PhongLi/KaonashiSounds/master/cover/artworks-000413713464-l67iaw-original.jpg"
+		picture: "https://raw.githubusercontent.com/nameiscashier/radio/master/cover/artworks-000539597682-uyj7jl-original.jpg"
 },
    ];
 	function shuffle(a) {
