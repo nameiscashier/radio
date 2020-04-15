@@ -37,6 +37,11 @@ $(function()
 		name: "stroger",
 		url: "Musics/Lemon Fight - Stronger (Ft. Jessica Reynoso).mp3",
 		picture: "https://raw.githubusercontent.com/nameiscashier/radio/master/cover/artworks-000539597682-uyj7jl-original.jpg"
+},{
+        artist: "saint jhn",
+        name: "roses",
+        url: "Musics/Roses - SAINt JHN_ Imanbek.mp3",
+        picture: "https://raw.githubusercontent.com/nameiscashier/radio/master/cover/artworks-33k8xtyGROfQRCyj-eaUYzw-original.jpg"
 },
    ];
 	function shuffle(a) {
